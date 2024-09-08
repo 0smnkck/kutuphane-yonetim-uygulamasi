@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Teslim Edilen Kitaplar</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <div class="content-box">
+            <!-- Sayfa başlığı -->
+            <h1>Teslim Edilen Kitaplar</h1>
+
+            <!-- Teslim edilen kitaplar hakkında bilgi mesajı -->
+            <p th:if="${teslimEdilenKitaplar.size() == 0}" style="color: gray;">
+                Henüz teslim edilen kitap bulunmamaktadır.
+            </p>
+
+            <!-- Teslim edilen kitapların listesi -->
+            <table aria-describedby="Teslim edilen kitaplar listesi">
+                <thead>
+                    <tr>
+                        <!-- Tablo başlıkları -->
+                        <th>ID</th>
+                        <th>Kitap Adı</th>
+                        <th>Üye</th>
+                        <th>Alım Tarihi</th>
+                        <th>Teslim Tarihi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Teslim edilen kitaplar için tablo satırları oluşturur -->
+                    <tr th:each="alim : ${teslimEdilenKitaplar}">
+                        <td th:text="${alim.islemId}"></td>
+                        <td th:text="${alim.kitap.ad}"></td>
+                        <td th:text="${alim.uye.ad} + ' ' + ${alim.uye.soyad}"></td>
+                        <td th:text="${alim.alimTarihi}"></td>
+                        <td th:text="${alim.gercekTeslimTarihi}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Ana sayfaya dönüş butonu -->
+            <a href="/" class="btn" aria-label="Ana sayfaya dön">Ana Sayfa</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitap Ekle</title>
+</head>
+<body>
+    <h1>Kitap Ekle</h1>
+
+    <!-- Kitap ekleme formu -->
+    <form th:action="@{/kitap/ekle}" th:object="${kitap}" method="post">
+        <div>
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" th:field="*{isbn}" pattern="[0-9]{13}" placeholder="13 haneli ISBN" required aria-required="true" aria-label="ISBN numarası girin"/>
+        </div>
+        <div>
+            <label for="ad">Kitap Adı:</label>
+            <input type="text" id="ad" th:field="*{ad}" required aria-required="true" aria-label="Kitap adı girin"/>
+        </div>
+        <div>
+            <label for="yazar">Yazar:</label>
+            <input type="text" id="yazar" th:field="*{yazar}" required aria-required="true" aria-label="Yazar adı girin"/>
+        </div>
+        <div>
+            <label for="yayinci">Yayıncı:</label>
+            <input type="text" id="yayinci" th:field="*{yayinci}" required aria-required="true" aria-label="Yayıncı adı girin"/>
+        </div>
+        <div>
+            <label for="kategori">Kategori:</label>
+            <input type="text" id="kategori" th:field="*{kategori}" required aria-required="true" aria-label="Kitap kategorisi girin"/>
+        </div>
+        <div>
+            <label for="rafNo">Raf Numarası:</label>
+            <input type="text" id="rafNo" th:field="*{rafNo}" required aria-required="true" aria-label="Kitap raf numarası girin"/>
+        </div>
+        <div>
+            <button type="submit" aria-label="Kitap ekle">Ekle</button>
+        </div>
+    </form>
+
+    <!-- Hata mesajı -->
+    <div th:if="${errorMessage != null}" aria-live="assertive" style="color: red;">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <!-- "Geri Dön" butonu -->
+    <div>
+        <a th:href="@{/kitap/islemleri}" aria-label="Kitap işlemlerine geri dön">Geri Dön</a>
+    </div>
+</body>
+</html>

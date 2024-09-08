@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Diğer İşlemler</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <div class="content-box">
+            <h1>Diğer İşlemler</h1>
+            <p>Lütfen yapmak istediğiniz işlemi seçin:</p>
+
+            <!-- Butonları içeren gezinme bölümü -->
+            <div class="button-container" role="navigation">
+                <a href="/kitapAlim/oduncAl" class="btn" aria-label="Kitap ödünç alma sayfasına git">Kitap Ödünç Al</a>
+                <a href="/kitapAlim/oduncAlinanlar" class="btn" aria-label="Ödünç alınan kitapları listele">Ödünç Alınan Kitapları Listele</a>
+                <a href="/kitapAlim/teslimEt" class="btn" aria-label="Kitap teslim etme sayfasına git">Kitap Teslim Et</a>
+                <a href="/kitapAlim/teslimEdilenler" class="btn" aria-label="Teslim edilen kitapları listele">Teslim Edilen Kitapları Listele</a>
+            </div>
+
+            <!-- Ana sayfaya dönüş butonu -->
+            <a href="/" class="btn" aria-label="Ana sayfaya geri dön">Ana Sayfa</a>
+        </div>
+    </div>
+</body>
+</html>

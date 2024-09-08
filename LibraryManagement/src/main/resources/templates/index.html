@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kütüphane Yönetim Uygulaması</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h1>Kütüphane Yönetim Uygulaması</h1>
+            <p>Hoşgeldiniz, Lütfen yapmak istediğiniz işlemi seçin:</p>
+            <div class="button-container">
+                <a href="/uye/islemleri" class="btn" aria-label="Üye işlemleri sayfasına git">Üye İşlemleri</a>
+                <a href="/kitap/islemleri" class="btn" aria-label="Kitap işlemleri sayfasına git">Kitap İşlemleri</a>
+                <a href="/digerIslemler" class="btn" aria-label="Diğer işlemler sayfasına git">Diğer İşlemler</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

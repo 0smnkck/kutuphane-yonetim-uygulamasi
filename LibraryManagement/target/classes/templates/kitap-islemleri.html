@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitap İşlemleri</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <div class="content-box">
+            <h1>Kitap İşlemleri</h1>
+            
+            <!-- Hata mesajını gösteren kısım (eğer bir hata mesajı varsa) -->
+            <div th:if="${errorMessage}" aria-live="assertive">
+                <p th:text="${errorMessage}" style="color: red;"></p>
+            </div>
+            <p>Yeni kitap ekleyebilir, mevcut kitapları güncelleyebilir veya silebilirsiniz.</p>
+            
+            <!-- Yeni kitap ekleme butonu -->
+            <div class="button-container">
+                <a href="/kitap/ekle" class="btn" aria-label="Yeni kitap ekle">Yeni Kitap Ekle</a>
+            </div>
+
+            <h2>Tüm Kitaplar</h2>
+            <table aria-describedby="Tüm Kitaplar">
+                <thead>
+                    <tr>
+                        <!-- Kitap özelliklerini gösteren başlıklar -->
+                        <th>ID</th>
+                        <th>Ad</th>
+                        <th>Yazar</th>
+                        <th>Yayınevi</th>
+                        <th>Kategori</th>
+                        <th>Raf No</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Her kitap için bir satır oluşturur ve kitap bilgilerini ilgili sütunlara yerleştirir -->
+                    <tr th:each="kitap : ${kitaplar}">
+                        <td th:text="${kitap.kitapId}"></td>
+                        <td th:text="${kitap.ad}"></td>
+                        <td th:text="${kitap.yazar}"></td>
+                        <td th:text="${kitap.yayinci}"></td>
+                        <td th:text="${kitap.kategori}"></td>
+                        <td th:text="${kitap.rafNo}"></td>
+                        <td>
+                            <!-- Kitap güncelleme sayfasına yönlendiren buton -->
+                            <a th:href="@{'/kitap/guncelle/' + ${kitap.kitapId}}" class="btn" aria-label="Kitabı güncelle">Güncelle</a>
+                            <!-- Kitap silme işlemi için POST formu -->
+                            <form th:action="@{'/kitap/sil/' + ${kitap.kitapId}}" method="post" style="display:inline;">
+                                <button type="submit" class="btn" aria-label="Kitabı sil" onclick="return confirm('Bu kitabı silmek istediğinizden emin misiniz?');">Sil</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Ana sayfaya geri dönme butonu -->
+            <a href="/" class="btn" aria-label="Ana sayfaya geri dön">Ana Sayfa</a>
+        </div>
+    </div>
+</body>
+</html>

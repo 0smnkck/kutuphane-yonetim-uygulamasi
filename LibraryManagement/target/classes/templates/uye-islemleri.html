@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Üye İşlemleri</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <div class="content-box">
+            <h1>Üye İşlemleri</h1>
+
+            <!-- Hata mesajı varsa, bunu bir JavaScript alert ile gösterir -->
+            <div th:if="${errorMessage}">
+                <script>
+                    alert("[[${errorMessage}]]");
+                </script>
+            </div>
+
+            <!-- Üye ekleme ve işlemler tablosu -->
+            <div class="button-container">
+                <a href="/uye/ekle" class="btn">Yeni Üye Ekle</a>
+            </div>
+            
+            <h2>Tüm Üyeler</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ad</th>
+                        <th>Soyad</th>
+                        <th>Telefon</th>
+                        <th>Email</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="uye : ${uyeler}">
+                        <td th:text="${uye.uyeId}"></td>
+                        <td th:text="${uye.ad}"></td>
+                        <td th:text="${uye.soyad}"></td>
+                        <td th:text="${uye.telefon}"></td>
+                        <td th:text="${uye.email}"></td>
+                        <td>
+                            <a th:href="@{'/uye/guncelle/' + ${uye.uyeId}}" class="btn">Güncelle</a>
+                            <a th:href="@{'/uye/sil/' + ${uye.uyeId}}" class="btn" onclick="return confirm('Bu üyeyi silmek istediğinizden emin misiniz?');">Sil</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="/" class="btn">Ana Sayfa</a>
+        </div>
+    </div>
+</body>
+</html>

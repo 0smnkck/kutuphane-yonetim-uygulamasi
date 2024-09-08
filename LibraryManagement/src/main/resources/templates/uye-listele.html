@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Üye Listeleme</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Üye Listeleme</h1>
+        
+        <!-- Üyeleri listelemek için tablo -->
+        <table aria-describedby="Üye Listeleme">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ad</th>
+                    <th>Soyad</th>
+                    <th>Telefon</th>
+                    <th>Email</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Her bir üyeyi tablodaki bir satır olarak gösterir -->
+                <tr th:each="uye : ${uyeler}">
+                    <td th:text="${uye.uyeId}"></td>
+                    <td th:text="${uye.ad}"></td>
+                    <td th:text="${uye.soyad}"></td>
+                    <td th:text="${uye.telefon}"></td>
+                    <td th:text="${uye.email}"></td>
+                    <td>
+                        <!-- Üye güncelleme sayfasına yönlendiren buton -->
+                        <a th:href="@{'/uye/guncelle/' + ${uye.uyeId}}" class="btn" aria-label="Üyeyi güncelle">Güncelle</a>
+                        <!-- Üye silme işlemi için buton -->
+                        <a th:href="@{'/uye/sil/' + ${uye.uyeId}}" class="btn" aria-label="Üyeyi sil" onclick="return confirm('Bu üyeyi silmek istediğinizden emin misiniz?');">Sil</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Ana sayfaya dönüş butonu -->
+        <a href="/" class="btn" aria-label="Ana sayfaya dön">Geri</a>
+    </div>
+</body>
+</html>

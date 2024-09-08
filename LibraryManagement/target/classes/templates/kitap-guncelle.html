@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kitap Güncelle</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="content-box">
+            <h1>Kitap Güncelle</h1>
+            
+            <!-- Hata Mesajı Gösterimi -->
+            <div th:if="${errorMessage != null}" aria-live="assertive">
+                <p style="color: red;" th:text="${errorMessage}">Hata mesajı burada görünecek</p>
+            </div>
+
+            <!-- Kitap güncelleme formu -->
+            <form th:action="@{'/kitap/guncelle/' + ${kitap.kitapId}}" th:object="${kitap}" method="post">
+                <div>
+                    <label for="kitapId">Kitap ID:</label>
+                    <input type="text" id="kitapId" th:field="*{kitapId}" readonly aria-label="Kitap ID" />
+                </div>
+                <div>
+                    <label for="isbn">ISBN:</label>
+                    <input type="text" id="isbn" th:field="*{isbn}" pattern="[0-9]{13}" placeholder="13 haneli ISBN" required aria-required="true" aria-label="ISBN numarası girin"/>
+                </div>
+                <div>
+                    <label for="ad">Kitap Adı:</label>
+                    <input type="text" id="ad" th:field="*{ad}" required aria-required="true" placeholder="Kitap adı" aria-label="Kitap adı girin"/>
+                </div>
+                <div>
+                    <label for="yazar">Yazar:</label>
+                    <input type="text" id="yazar" th:field="*{yazar}" required aria-required="true" placeholder="Yazar adı" aria-label="Yazar adı girin"/>
+                </div>
+                <div>
+                    <label for="yayinci">Yayıncı:</label>
+                    <input type="text" id="yayinci" th:field="*{yayinci}" required aria-required="true" placeholder="Yayıncı adı" aria-label="Yayıncı adı girin"/>
+                </div>
+                <div>
+                    <label for="kategori">Kategori:</label>
+                    <input type="text" id="kategori" th:field="*{kategori}" required aria-required="true" placeholder="Kitap kategorisi" aria-label="Kitap kategorisi girin"/>
+                </div>
+                <div>
+                    <label for="rafNo">Raf Numarası:</label>
+                    <input type="text" id="rafNo" th:field="*{rafNo}" required aria-required="true" placeholder="Raf numarası" aria-label="Kitap raf numarası girin"/>
+                </div>
+                <div>
+                    <button type="submit" aria-label="Kitap güncelle">Güncelle</button>
+                </div>
+            </form>
+
+            <div>
+                <a th:href="@{/kitap/islemleri}" aria-label="Kitap işlemlerine geri dön">Geri Dön</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
